@@ -84,7 +84,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:50207',
     'http://64.227.150.216:8565',
     'http://192.168.0.66:50207',
-    "https://juwels1996.github.io"
+    "https://juwels1996.github.io",
 ]
 
 

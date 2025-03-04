@@ -12,7 +12,7 @@ class UserViewSet(ModelViewSet):
 def index(request):
 
     #users = CustomUser.objects.all().values("id", "username","profile_image","ssc_batch","address")
-    users = CustomUser.objects.all()
+    users = CustomUser.objects.all().order_by('-isTeacher', 'ssc_batch')
     context = {}
     user_data_list = []
     for user in users:
@@ -29,6 +29,7 @@ def index(request):
         user_dict['memories'] = list(user_memories.values())
 
         user_data_list.append(user_dict)
+        return Response(user_data_list)
 
     context['user_data'] = user_data_list
     context['comment_list'] = [
