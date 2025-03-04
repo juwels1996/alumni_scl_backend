@@ -24,6 +24,7 @@ def index(request):
         user_dict['designation'] = user.designation
         user_dict['profile_image'] = user.profile_image
         user_dict['address'] = user.address
+        user_dict['isTeacher'] = user.isTeacher
 
         user_memories = UserMemories.objects.filter(user=user)
         user_dict['memories'] = list(user_memories.values())
