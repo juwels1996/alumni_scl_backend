@@ -11,7 +11,6 @@ class CustomUser(models.Model):
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
-    isTeacher = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
