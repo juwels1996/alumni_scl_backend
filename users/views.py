@@ -30,7 +30,7 @@ def index(request):
         user_dict['memories'] = list(user_memories.values())
 
         user_data_list.append(user_dict)
-        return Response(user_data_list)
+        # return Response(user_data_list)
 
     context['user_data'] = user_data_list
     context['comment_list'] = [
