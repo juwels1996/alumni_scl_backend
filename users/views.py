@@ -12,23 +12,41 @@ class UserViewSet(ModelViewSet):
 def index(request):
 
     #users = CustomUser.objects.all().values("id", "username","profile_image","ssc_batch","address")
-    users = CustomUser.objects.all()
+    users = CustomUser.objects.all().order_by('-isTeacher', 'ssc_batch')
     context = {}
     user_data_list = []
+
+    print(users, 'users')
     for user in users:
-        user_dict = {}
-        user_dict['id'] = user.id
-        user_dict['ssc_batch'] = user.ssc_batch
-        user_dict['username'] = user.username
-        user_dict['phone_number'] = user.phone_number
-        user_dict['designation'] = user.designation
-        user_dict['profile_image'] = user.profile_image
-        user_dict['address'] = user.address
 
-        user_memories = UserMemories.objects.filter(user=user)
-        user_dict['memories'] = list(user_memories.values())
+        user_dic = {
+            "id":user.id,
+            "ssc_batch":  user.ssc_batch,
+            "username": user.username,
+            "phone_number": user.phone_number,
+            "designation":user.designation,
+            "profile_image": user.profile_image,
+            "address":user.address,
+            "is_teacher":user.isTeacher,
+            "blood_group":user.bloodGroup
 
-        user_data_list.append(user_dict)
+        }
+        user_data_list.append(user_dic)
+
+
+        # user_dict['id'] = user.id
+        # user_dict['ssc_batch'] = user.ssc_batch
+        # user_dict['username'] = user.username
+        # user_dict['phone_number'] = user.phone_number
+        # user_dict['designation'] = user.designation
+        # user_dict['profile_image'] = user.profile_image
+        # user_dict['address'] = user.address
+        
+
+        # user_memories = UserMemories.objects.filter(user=user)
+        # user_dict['memories'] = list(user_memories.values())
+
+        # user_data_list.append(user_dict)
 
     context['user_data'] = user_data_list
     context['comment_list'] = [
